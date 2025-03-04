@@ -6,64 +6,64 @@ _323CA_
 
 **Flow Program**
 
-    Am folosit implementarea personala, din etapa 1. Aceasta a fost imbunatatita
+Am folosit implementarea personala, din etapa 1. Aceasta a fost imbunatatita
 si modificata astfel in cat sa permita extinderea functionalitatilor.
 
-    Proiectul urmareste simularea unei aplicatii care reda muzica si podcasturi.
+Proiectul urmareste simularea unei aplicatii care reda muzica si podcasturi.
 Aici se ruleaza melodii simple, melodii ce fac parte dintr-un playlist, melodii
 ce fac parte dintr-un album si podcasturi. Astfel, trebuie sa mangeriem diferite
 informatii in cadrul unei baze de date pentru a facilita experienta unui
 utilizator in ceea ce priveste folosirea programului nostru.
 
-    Pentru a gestiona informatiile, avem create 2 pachete ce contin diferite clase
+Pentru a gestiona informatiile, avem create 2 pachete ce contin diferite clase
 care au scopuri bine alese. Fiecare clasa are rolul ei in mentinerea unei rulari
 lipsite de bug-uri. Sunt facute verificari si calcule pentru prelucrarea datelor
 in fiecare loc unde este nevoie, fiind evitata orice pierdere de informatie.
 
-    Pentru gestionarea functionalitatilor intr-un mod cat mai usor de inteles,
+Pentru gestionarea functionalitatilor intr-un mod cat mai usor de inteles,
 avem metode specifice fiecarei comenzi, care poarta nume sugestive. (ex: metoda
 _load_ este asociata comenzii *load*).
 
-    Codul este gandit astfel incat sa se potata face o eventuala extindere a 
+Codul este gandit astfel incat sa se potata face o eventuala extindere a 
 functionalitatilor. Inceputul consta in citirea comenzilor din fisierul json,
 apoi se ia fiecare comanda si, prin conditionalele "if" se apeleaza metodele
 specifice fiecarei comenzi.
 
 **Pachete**
     
-    -database: contine in general clase auxiliare care stau la baza implementarii.
-              Ex: ArtistPage este clasa care contine informatii despre pagina
-              unui artist, iar Event este clasa care contine informatiile despre
-              un eveniment.
-    
-    -programInterface: contine clasele care sunt cele mai apropiate de utilizator,
-                astfel aici gasim clase cu metode pentru comenzi si campuri ce au
-                ca scop inceperea legaturilor intre clase prin agregari, compuneri
-                sau mosteniri.
+-database: contine in general clase auxiliare care stau la baza implementarii.
+          Ex: ArtistPage este clasa care contine informatii despre pagina
+          unui artist, iar Event este clasa care contine informatiile despre
+          un eveniment.
+
+-programInterface: contine clasele care sunt cele mai apropiate de utilizator,
+            astfel aici gasim clase cu metode pentru comenzi si campuri ce au
+            ca scop inceperea legaturilor intre clase prin agregari, compuneri
+            sau mosteniri.
 
 **Despre Clase**
 
-    Se foloseste *Design Pattern*-ul *Singleton*, pentru clasa _ExecuteCommand_,
+Se foloseste *Design Pattern*-ul *Singleton*, pentru clasa _ExecuteCommand_,
 precum si pentru alte clase care nu ofera un rost unei instantieri multiple.
     *Singleton*: ExecuteCommand, SearchBar, GeneralStatistics, etc.
 
-    Fiecare clasa contine metode specifice numelui ei. Spre exemplu, _GeneralStatistics_
+Fiecare clasa contine metode specifice numelui ei. Spre exemplu, _GeneralStatistics_
 contine metodele ce realizeaza comenzi specifice statisticilor generale. Astfel, codul
 este mai intuitiv si usor de inteles.
 
-    Utilizatorii si informatiile despre acestia sunt retinuti in array-ul de clase
+Utilizatorii si informatiile despre acestia sunt retinuti in array-ul de clase
 "UserDatabase" continut in clasa "UserManagement", care contine metode pentru comenzile
 ce tin de baza de date a utilizatorilor.
 
-    Paginile si informatiile despre acestea sunt retinute in array-urile de clase
+Paginile si informatiile despre acestea sunt retinute in array-urile de clase
 "ArtistPage" si "HostPage" continute in clasa "PageManagementHub", care contine metode
 ce tin de baza de date specifica pentru paginile utilizatorilor. 
 
-    Clasa ExecuteCommand gazduieste array-ul de comenzi citite din fisierul json, prin
+Clasa ExecuteCommand gazduieste array-ul de comenzi citite din fisierul json, prin
 continerea unui array de clase de tip Command. ExecuteCommand apeleaza metode specifice
 pentru fiecare comanda.
 
-    Clasa *ExecuteCommand* este cea care apeleaza metodele propriu zise ale
+Clasa *ExecuteCommand* este cea care apeleaza metodele propriu zise ale
 fiecarei comenzi, si pregateste output-ul. 
     Prin intermediul unui *lant de mostenire* (_ExecuteCommand_, _NavigateClass_,
 _Player_, _StatusClass_, _PlayListClass_) se pot apela in cadrul clasei ExecuteCommand
@@ -73,7 +73,7 @@ comenzi) in mai multe clase pentru o intelegere mai usoara. Astfel, prin "super"
 apelam metodele oricarei clase din acestea, fara a le mai primi ca parametru sau
 a realiza alte instantieri.
 
-    Prin intermediul *compunerii*, clasa PrincipalDatabase se foloseste de alte
+Prin intermediul *compunerii*, clasa PrincipalDatabase se foloseste de alte
 clase pentru a structura o baza de date care sa contina date despre incarcari,
 cautari, like-uri, etc(informatii care trebuie retinute pentru functionarea
 aplicatiei).
