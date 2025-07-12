@@ -1,8 +1,5 @@
 # GlobalWaves Project
 
-**Author:** Harea Teodor-Adrian  
-**Class:** 323CA
-
 ---
 
 ## Overview
